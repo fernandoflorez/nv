@@ -1,5 +1,5 @@
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>.", vim.cmd.Ex)
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<S-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<S-k>", ":m '<-2<CR>gv=gv")

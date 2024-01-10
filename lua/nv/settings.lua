@@ -7,14 +7,14 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.wrap = false
 vim.opt.expandtab = true
-vim.opt.autoindent = true
-vim.opt.smartindent = true
+vim.opt.autoindent = false
+vim.opt.smartindent = false
 vim.opt.shiftwidth = 4
 vim.opt.scrolloff = 8
 -- vim.opt.backspace = indent,eol,start
 vim.opt.backup = false
 vim.opt.swapfile = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.incsearch = true
 vim.opt.smartcase = true
@@ -25,4 +25,4 @@ vim.opt.wildmode = "list:longest,list:full"
 vim.opt.cursorline = true
 vim.opt.splitbelow = true
 vim.opt.mouse = ""
-vim.api.nvim_set_option("clipboard","unnamed")
+vim.api.nvim_set_option("clipboard", "unnamed")
