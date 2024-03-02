@@ -1,6 +1,7 @@
 return {
     {
         "catppuccin/nvim",
+        lazy = false,
         name = "catppuccin",
         priority = 1000,
         config = function()
@@ -12,11 +13,14 @@ return {
     },
     {
         "nvim-telescope/telescope.nvim",
+        event = "VimEnter",
         tag = "0.1.5",
         dependencies = {
-            "nvim-lua/plenary.nvim"
+            "nvim-lua/plenary.nvim",
+            "benfowler/telescope-luasnip.nvim"
         },
         config = function()
+            require('telescope').load_extension('luasnip')
             local builtin = require("telescope.builtin")
 
             vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
@@ -24,10 +28,12 @@ return {
             vim.keymap.set("n", "<leader>fc", builtin.commands, {})
             vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
             vim.keymap.set("n", "<leader>:", builtin.command_history, {})
+            vim.keymap.set("n", "<leader>fs", function() require('telescope').extensions.luasnip.luasnip {} end, {})
         end
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        event = { "BufReadPre", "BufNewFile" },
         build = ":TSUpdate",
         config = function()
             local configs = require("nvim-treesitter.configs")
@@ -54,10 +60,12 @@ return {
     },
     {
         "numToStr/Comment.nvim",
+        event = { "BufReadPre", "BufNewFile" },
         opts = {}
     },
     {
         "lukas-reineke/indent-blankline.nvim",
+        event = { "BufReadPre", "BufNewFile" },
         main = "ibl",
         opts = {
             indent = {
@@ -66,13 +74,17 @@ return {
         }
     },
     {
-        "airblade/vim-gitgutter"
+        "lewis6991/gitsigns.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        opts = {}
     },
     {
-        "ntpeters/vim-better-whitespace"
+        "ntpeters/vim-better-whitespace",
+        event = { "BufReadPre", "BufNewFile" },
     },
     {
         "rcarriga/nvim-notify",
+        event = "VeryLazy",
         opts = {
         }
     },
@@ -112,6 +124,7 @@ return {
     },
     {
         "Vimjas/vim-python-pep8-indent",
+        event = "InsertEnter",
         ft = "python"
     },
     {
@@ -121,17 +134,8 @@ return {
     },
     -- LSP
     {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-        dependencies = {
-            "rafamadriz/friendly-snippets"
-        },
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-        end
-    },
-    {
         "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -140,13 +144,15 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/nvim-cmp",
-            "L3MON4D3/LuaSnip",
+            { "L3MON4D3/LuaSnip", version = "v2.*" },
             "saadparwaiz1/cmp_luasnip",
             "j-hui/fidget.nvim",
+            "rafamadriz/friendly-snippets"
         },
         config = function()
             require("fidget").setup({})
             require("mason").setup({})
+            require("luasnip.loaders.from_vscode").lazy_load()
 
             local cmp_lsp = require("cmp_nvim_lsp")
             local capabilities = vim.tbl_deep_extend(
@@ -161,7 +167,8 @@ return {
                     "dockerls",
                     "docker_compose_language_service",
                     "ruff_lsp",
-                    "pyright"
+                    "pyright",
+                    "cfn-lint"
                 },
                 handlers = {
                     function(server_name)
@@ -186,7 +193,7 @@ return {
                                     bufopts)
 
                                 vim.api.nvim_create_autocmd("BufWritePre", {
-                                    buffer = buffer,
+                                    buffer = bufnr,
                                     callback = function()
                                         vim.lsp.buf.format {}
                                     end
@@ -196,6 +203,7 @@ return {
                     end,
                     ["pyright"] = function()
                         require("lspconfig").pyright.setup({
+                            capabilities=capabilities,
                             settings = {
                                 pyright = {
                                     disableOrganizeImports = true,
@@ -209,16 +217,8 @@ return {
                         })
                     end,
                     ["lua_ls"] = function()
-                        require("lspconfig").lua_ls.setup ({
+                        require("lspconfig").lua_ls.setup({
                             capabilities = capabilities,
-                            on_attach = function(client, bufnr)
-                                vim.api.nvim_create_autocmd("BufWritePre", {
-                                    buffer = buffer,
-                                    callback = function()
-                                        vim.lsp.buf.format {}
-                                    end
-                                })
-                            end,
                             settings = {
                                 Lua = {
                                     diagnostics = {
