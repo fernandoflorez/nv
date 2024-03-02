@@ -26,3 +26,6 @@ vim.opt.cursorline = true
 vim.opt.splitbelow = true
 vim.opt.mouse = ""
 vim.api.nvim_set_option("clipboard", "unnamed")
+-- netrw
+vim.g.netrw_banner = false
+vim.g.netrw_liststyle = 3
