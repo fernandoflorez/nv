@@ -12,22 +12,23 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(
-    "nv.plugins",
+    { { import = "nv.plugins" } },
     {
         defaults = {
-            -- lazy = true
+            lazy = true
         },
         checker = {
             enabled = true,
-            notify = false
+            notify = true
         },
         change_detection = {
             notify = false
         },
         performance = {
             cache = {
-                enabld = true
-            }
+                enabled = true
+            },
+            reset_packpath = true
         },
         ui = {
             icons = {
