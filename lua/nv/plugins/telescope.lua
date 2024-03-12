@@ -15,6 +15,7 @@ return {
         vim.keymap.set("n", "<leader>fc", builtin.commands, {})
         vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
         vim.keymap.set("n", "<leader>:", builtin.command_history, {})
+        vim.keymap.set("n", "gr", builtin.lsp_references, {})
         vim.keymap.set("n", "<leader>fs", function() require('telescope').extensions.luasnip.luasnip {} end, {})
     end
 }
