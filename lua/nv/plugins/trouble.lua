@@ -3,9 +3,30 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-        { "<leader>xx", function() require("trouble").toggle() end,                                    mode = "n" },
-        { "<leader>xn", function() require("trouble").next({ skip_groups = true, jump = true }) end,   mode = "n" },
-        { "<leader>xp", function() require("trouble").previous({ skip_groups = true, jump = true }) end, mode = "n" },
+        { "<leader>tt", function() require("trouble").toggle() end },
+        { "]t",
+            function()
+                if require("trouble").is_open() then
+                    require("trouble").next({ skip_groups = true, jump = true })
+                else
+                    local ok, err = pcall(vim.cmd.cnext)
+                    if not ok then
+                        vim.notify(err, vim.log.levels.ERROR)
+                    end
+                end
+            end
+        },
+        { "[t",
+            function()
+                if require("trouble").is_open() then
+                    require("trouble").previous({ skip_groups = true, jump = true })
+                else
+                    local ok, err = pcall(vim.cmd.cprev)
+                    if not ok then
+                        vim.notify(err, vim.log.levels.ERROR)
+                    end
+                end
+            end },
     },
     opts = {}
 }
