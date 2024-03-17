@@ -18,7 +18,8 @@ return {
             python = { "ruff_ls" },
             javascript = { "prettierd" },
             graphql = { "prettierd" },
-            docker = { "dockerls" }
+            docker = { "dockerls" },
+            yaml = { "prettierd" }
         }
     },
 }
