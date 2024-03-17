@@ -4,7 +4,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
         { "<leader>tt", function() require("trouble").toggle() end },
-        { "]t",
+        { "<C-n>",
             function()
                 if require("trouble").is_open() then
                     require("trouble").next({ skip_groups = true, jump = true })
@@ -16,7 +16,7 @@ return {
                 end
             end
         },
-        { "[t",
+        { "<C-p>",
             function()
                 if require("trouble").is_open() then
                     require("trouble").previous({ skip_groups = true, jump = true })
