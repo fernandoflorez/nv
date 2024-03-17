@@ -25,7 +25,7 @@ return {
                 end,
             },
             mapping = {
-                ["<C-n>"] = cmp.mapping(function(fallback)
+                ["<C-j>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
                     elseif luasnip.expand_or_jumpable() then
@@ -37,7 +37,7 @@ return {
                     end
                 end, { "i", "s" }),
 
-                ["<C-p>"] = cmp.mapping(function(fallback)
+                ["<C-k>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
                     elseif luasnip.jumpable(-1) then
@@ -49,6 +49,7 @@ return {
                 ["<Tab>"] = cmp.mapping.confirm({ select = true }),
             },
             sources = cmp.config.sources({
+                { name = "path" },
                 { name = "pyright" },
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
