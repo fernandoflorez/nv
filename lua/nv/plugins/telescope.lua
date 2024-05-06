@@ -19,6 +19,9 @@ return {
         vim.keymap.set("n", "<leader>ds",
             function() builtin.lsp_document_symbols({ ignore_symbols = { "constant", "variable" } }) end,
             {})
-        vim.keymap.set("n", "<leader>fs", function() require('telescope').extensions.luasnip.luasnip {} end, {})
+        vim.keymap.set("n", "<leader>/", function()
+            local opt = require("telescope.themes").get_dropdown({ height = 10, previewer = false })
+            builtin.current_buffer_fuzzy_find(opt)
+        end, {})
     end
 }
