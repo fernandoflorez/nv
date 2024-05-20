@@ -29,3 +29,14 @@ vim.api.nvim_set_option("clipboard", "unnamed")
 -- netrw
 vim.g.netrw_banner = false
 vim.g.netrw_liststyle = 3
+-- diagnostics
+vim.diagnostic.config({
+    float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = ""
+    }
+})
