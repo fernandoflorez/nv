@@ -25,8 +25,8 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "dockerls",
-                "ruff_lsp",
-                "pyright",
+                "ruff",
+                "basedpyright",
             },
             handlers = {
                 function(server_name)
@@ -34,25 +34,27 @@ return {
                         capabilities = capabilities
                     })
                 end,
-                ["ruff_lsp"] = function()
-                    require("lspconfig").ruff_lsp.setup({
+                ["ruff"] = function()
+                    require("lspconfig").ruff.setup({
                         capabilities = capabilities,
-                        on_attach = function(client, bufnr)
+                        on_attach = function(client, _)
                             client.server_capabilities.hoverProvider = false
                         end
                     })
                 end,
-                ["pyright"] = function()
-                    require("lspconfig").pyright.setup({
+                ["basedpyright"] = function()
+                    require("lspconfig").basedpyright.setup({
                         capabilities = capabilities,
                         settings = {
-                            pyright = {
+                            basedpyright = {
                                 disableOrganizeImports = true,
-                            },
-                            python = {
                                 analysis = {
-                                    ignore = { '*' },
-                                },
+                                    ignore = { "*" },
+                                    useLibraryCodeForTypes = true,
+                                    typeCheckingMode = "standard",
+                                    diagnosticMode = "openFilesOnly",
+                                    autoImportCompletions = true,
+                                }
                             },
                         },
                     })

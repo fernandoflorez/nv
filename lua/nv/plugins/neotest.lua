@@ -15,6 +15,13 @@ return {
                 require("neotest").run.run(vim.fn.expand("%"))
             end,
             mode = "n"
+        },
+        {
+            "<leader>tw",
+            function()
+                require("neotest").run.run()
+            end,
+            mode = "n"
         }
     },
     config = function()
