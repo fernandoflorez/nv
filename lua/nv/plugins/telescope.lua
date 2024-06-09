@@ -3,6 +3,7 @@ return {
     tag = "0.1.5",
     dependencies = {
         "nvim-lua/plenary.nvim",
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
     },
     keys = {
         {
@@ -49,21 +50,17 @@ return {
             mode = "n"
         }
     },
-    opts = {}
-    -- config = function()
-    --     local builtin = require("telescope.builtin")
-    --
-    --     vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-    --     vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-    --     vim.keymap.set("n", "<leader>fc", builtin.commands, {})
-    --     vim.keymap.set("n", "<leader>:", builtin.command_history, {})
-    --     vim.keymap.set("n", "gr", builtin.lsp_references, {})
-    --     vim.keymap.set("n", "<leader>ds",
-    --         function() builtin.lsp_document_symbols({ ignore_symbols = { "constant", "variable" } }) end,
-    --         {})
-    --     vim.keymap.set("n", "<leader>/", function()
-    --         local opt = require("telescope.themes").get_dropdown({ height = 10, previewer = false })
-    --         builtin.current_buffer_fuzzy_find(opt)
-    --     end, {})
-    -- end
+    config = function()
+        require('telescope').setup {
+            extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case"
+                }
+            }
+        }
+        require('telescope').load_extension('fzf')
+    end
 }

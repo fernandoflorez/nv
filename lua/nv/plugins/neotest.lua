@@ -19,7 +19,21 @@ return {
         {
             "<leader>tw",
             function()
-                require("neotest").run.run()
+                require("neotest").run.run({ suite = true })
+            end,
+            mode = "n"
+        },
+        {
+            "<leader>ts",
+            function()
+                require("neotest").run.stop()
+            end,
+            mode = "n"
+        },
+        {
+            "<leader>t_",
+            function()
+                require("neotest").summary.toggle()
             end,
             mode = "n"
         }
