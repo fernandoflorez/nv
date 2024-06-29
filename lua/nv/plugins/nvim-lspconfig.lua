@@ -24,7 +24,8 @@ return {
                 "dockerls",
                 "ruff",
                 "basedpyright",
-                "yamlls"
+                "yamlls",
+                "graphql"
             },
             handlers = {
                 function(server_name)
