@@ -4,6 +4,7 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
@@ -25,7 +26,7 @@ return {
                 "ruff",
                 "basedpyright",
                 "yamlls",
-                "graphql"
+                "graphql",
             },
             handlers = {
                 function(server_name)
@@ -105,6 +106,11 @@ return {
                         }
                     })
                 end
+            }
+        })
+        require('mason-tool-installer').setup({
+            ensure_installed = {
+                "debugpy"
             }
         })
     end
