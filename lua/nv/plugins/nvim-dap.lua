@@ -8,27 +8,37 @@ return {
     keys = {
         {
             "<leader>b",
-            require("dap").toggle_breakpoint,
+            function()
+                require("dap").toggle_breakpoint()
+            end,
             mode = "n"
         },
         {
             "<F5>",
-            require("dap").continue,
+            function()
+                require("dap").continue()
+            end,
             mode = "n"
         },
         {
             "<F6>",
-            require("dap").step_over,
+            function()
+                require("dap").step_over()
+            end,
             mode = "n"
         },
         {
             "<F2>",
-            require("dap").step_into,
+            function()
+                require("dap").step_into()
+            end,
             mode = "n"
         },
         {
             "<F3>",
-            require("dap").step_out,
+            function()
+                require("dap").step_out()
+            end,
             mode = "n"
         },
     },
