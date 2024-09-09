@@ -19,7 +19,8 @@ return {
             javascript = { "prettierd" },
             graphql = { "prettierd" },
             docker = { "dockerls" },
-            yaml = { "yamlls" }
+            yaml = { "yamlls" },
+            go = { "goimports", "gofumpt" }
         }
     },
 }

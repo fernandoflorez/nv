@@ -27,6 +27,7 @@ return {
                 "basedpyright",
                 "yamlls",
                 "graphql",
+                "gopls"
             },
             handlers = {
                 function(server_name)
@@ -105,12 +106,24 @@ return {
                             }
                         }
                     })
+                end,
+                ["gopls"] = function()
+                    require("lspconfig").gopls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            gopls = {
+                                gofumpt = true
+                            }
+                        }
+                    })
                 end
             }
         })
         require('mason-tool-installer').setup({
             ensure_installed = {
-                "debugpy"
+                "debugpy",
+                "goimports",
+                "gofumpt"
             }
         })
     end
