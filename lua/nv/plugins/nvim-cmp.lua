@@ -12,7 +12,8 @@ return {
         { "L3MON4D3/LuaSnip", version = "v2.*" },
         "saadparwaiz1/cmp_luasnip",
         "honza/vim-snippets",
-        "onsails/lspkind.nvim"
+        "onsails/lspkind.nvim",
+        "supermaven-inc/supermaven-nvim"
     },
     config = function()
         local luasnip = require("luasnip")
@@ -81,6 +82,7 @@ return {
                 end, { "i", "s" })
             },
             sources = cmp.config.sources({
+                { name = "supermaven", priority = 1 },
                 { name = "basedpyright", priority = 1 },
                 { name = "nvim_lsp",     priority = 1 },
                 { name = "path",         priority = 1 },
