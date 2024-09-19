@@ -24,6 +24,13 @@ return {
             mode = "n"
         },
         {
+            "<leader>tn",
+            function()
+                require("neotest").run.run()
+            end,
+            mode = "n"
+        },
+        {
             "<leader>ts",
             function()
                 require("neotest").run.stop()
