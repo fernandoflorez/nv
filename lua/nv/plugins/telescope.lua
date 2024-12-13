@@ -40,14 +40,6 @@ return {
                 require("telescope.builtin").lsp_document_symbols({ ignore_symbols = { "constant", "variable" } })
             end,
             mode = "n"
-        },
-        {
-            "<leader>/",
-            function()
-                local opt = require("telescope.themes").get_dropdown({ height = 10, previewer = false })
-                require("telescope.builtin").current_buffer_fuzzy_find(opt)
-            end,
-            mode = "n"
         }
     },
     config = function()
