@@ -6,6 +6,8 @@ return {
     config = function()
         require("rose-pine").setup({
             variant = "moon",
+            dark_variant = "moon",
+            dim_inactive_windows = true,
             styles = {
                 italic = false,
             }
