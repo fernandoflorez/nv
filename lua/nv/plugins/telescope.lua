@@ -40,6 +40,13 @@ return {
                 require("telescope.builtin").lsp_document_symbols({ ignore_symbols = { "constant", "variable" } })
             end,
             mode = "n"
+        },
+        {
+            "<leader>tt",
+            function()
+                require("telescope.builtin").diagnostics()
+            end,
+            mode = "n"
         }
     },
     config = function()
