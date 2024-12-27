@@ -10,8 +10,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(event)
         local opts = { buffer = event.buf }
 
-        vim.keymap.set("v", "<Tab>", ">gv", opts)
-        vim.keymap.set("v", "<S-Tab>", "<gv", opts)
+        vim.keymap.set("v", ">", ">gv", opts)
+        vim.keymap.set("v", "<", "<gv", opts)
         vim.keymap.set("v", "<S-j>", ":m '>+1<CR>gv=gv", opts)
         vim.keymap.set("v", "<S-k>", ":m '<-2<CR>gv=gv", opts)
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
