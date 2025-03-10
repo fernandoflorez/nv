@@ -35,7 +35,7 @@ return {
             mode = "n"
         },
         {
-            "<leader>ds",
+            "<leader>.",
             function()
                 require("telescope.builtin").lsp_document_symbols({ ignore_symbols = { "constant", "variable" } })
             end,
