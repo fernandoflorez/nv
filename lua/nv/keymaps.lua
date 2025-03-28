@@ -1,14 +1,14 @@
 vim.keymap.set("n", "<leader>.", vim.cmd.Ex)
-vim.keymap.set("n", "<S-Up>", "<cmd>resize +2<cr>")
-vim.keymap.set("n", "<S-Down>", "<cmd>resize -2<cr>")
-vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -2<cr>")
-vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +2<cr>")
+vim.keymap.set("n", "<S-Up>", "<cmd>resize +1<cr>")
+vim.keymap.set("n", "<S-Down>", "<cmd>resize -1<cr>")
+vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -1<cr>")
+vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +1<cr>")
 
 local nvGroup = vim.api.nvim_create_augroup("nv", {})
 vim.api.nvim_create_autocmd("LspAttach", {
     group = nvGroup,
     callback = function(event)
-        local opts = { buffer = event.buf }
+        local opts = { buffer = event.buf, silent = true }
 
         vim.keymap.set("v", ">", ">gv", opts)
         vim.keymap.set("v", "<", "<gv", opts)
