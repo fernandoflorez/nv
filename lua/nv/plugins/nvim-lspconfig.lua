@@ -5,19 +5,16 @@ return {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
     },
     config = function()
         require("mason").setup({})
 
-        local cmp_lsp = require("cmp_nvim_lsp")
+        local cmp_lsp = require("blink.cmp")
         local capabilities = vim.tbl_deep_extend(
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities()
+            cmp_lsp.get_lsp_capabilities({}, false)
         )
         require("mason-lspconfig").setup({
             ensure_installed = {
@@ -73,7 +70,7 @@ return {
                                         "before_each",
                                         "after_each"
                                     },
-                                }
+                                },
                             }
                         }
                     })
