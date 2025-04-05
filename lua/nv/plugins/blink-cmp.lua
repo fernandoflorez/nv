@@ -32,7 +32,7 @@ return {
             ["<S-Tab>"] = {
                 'snippet_backward', 'fallback'
             },
-            ["<CR>"] = { "accept_and_enter", "fallback" },
+            ["<CR>"] = { "accept", "fallback" },
             ["<C-j>"] = { 'select_next', 'fallback_to_mappings' },
             ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
             ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
@@ -59,7 +59,7 @@ return {
                 },
             },
         },
-        signature = { enabled = true },
+        signature = { enabled = false },
 
         snippets = { preset = 'luasnip' },
 
