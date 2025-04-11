@@ -39,6 +39,21 @@ return {
             ['<C-f>'] = { 'scroll_documentation_down', 'fallback' }
         },
 
+        cmdline = {
+            keymap = {
+                preset = "inherit"
+            },
+            completion = {
+                list = {
+                    selection = {
+                        preselect = false
+                    }
+                },
+                menu = {
+                    auto_show = true
+                }
+            }
+        },
         completion = {
             documentation = { auto_show = true, auto_show_delay_ms = 0 },
             menu = {
