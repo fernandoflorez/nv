@@ -32,6 +32,7 @@ vim.g.netrw_banner = false
 vim.g.netrw_liststyle = 3
 -- diagnostics
 vim.diagnostic.config({
+    virtual_lines = true,
     float = {
         focusable = false,
         style = "minimal",
