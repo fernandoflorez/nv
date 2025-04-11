@@ -16,15 +16,23 @@ return {
             end,
             mode = "n"
         }
-        -- {
-        --     "<leader>do",
-        --     ":DiffviewOpen<CR>",
-        --     mode = "n"
-        -- },
-        -- {
-        --     "<leader>dc",
-        --     ":DiffviewClose<CR>",
-        --     mode = "n"
-        -- }
-    }
+    },
+    config = function()
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = { "DiffviewFiles", "DiffviewFilePanel", "DiffviewFileHistoryPanel" },
+            callback = function(args)
+                vim.diagnostic.config({ virtual_lines = false }, args.buf)
+            end,
+        })
+
+        vim.api.nvim_create_autocmd("BufEnter", {
+            callback = function(args)
+                local bufnr = args.buf
+                local ft = vim.bo[bufnr].filetype
+                if not ft:match("^Diffview") then
+                    vim.diagnostic.config({ virtual_lines = true }, bufnr)
+                end
+            end
+        })
+    end
 }
