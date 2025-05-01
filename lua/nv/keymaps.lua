@@ -9,10 +9,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(event)
         local opts = { buffer = event.buf, silent = true }
 
-        vim.keymap.set("v", ">", ">gv", opts)
-        vim.keymap.set("v", "<", "<gv", opts)
-        vim.keymap.set("v", "<S-j>", ":m '>+1<CR>gv=gv", opts)
-        vim.keymap.set("v", "<S-k>", ":m '<-2<CR>gv=gv", opts)
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
