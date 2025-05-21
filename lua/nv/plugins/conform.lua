@@ -16,6 +16,7 @@ return {
         formatters_by_ft = {
             lua = { "lua_ls" },
             python = { "ruff_format" },
+            json = { "jq" },
             javascript = { "prettierd" },
             graphql = { "prettierd" },
             docker = { "dockerls" },
