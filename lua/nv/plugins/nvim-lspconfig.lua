@@ -101,14 +101,16 @@ return {
                 "basedpyright",
                 "yamlls",
                 "graphql",
-                "gopls"
+                "gopls",
             },
         })
         require('mason-tool-installer').setup({
             ensure_installed = {
                 "debugpy",
                 "goimports",
-                "gofumpt"
+                "gofumpt",
+                "prettierd",
+                "jq"
             }
         })
     end
