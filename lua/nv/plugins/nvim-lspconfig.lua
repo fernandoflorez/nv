@@ -102,6 +102,8 @@ return {
                 "yamlls",
                 "graphql",
                 "gopls",
+                "terraform-ls",
+                "terraform"
             },
         })
         require('mason-tool-installer').setup({
