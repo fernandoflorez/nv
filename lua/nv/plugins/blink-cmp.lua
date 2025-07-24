@@ -8,7 +8,6 @@ return {
             version = 'v2.*',
             config = function()
                 require("luasnip.loaders.from_snipmate").lazy_load()
-                print("")
             end
         },
         "onsails/lspkind.nvim",
