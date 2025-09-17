@@ -21,7 +21,9 @@ return {
             graphql = { "prettierd" },
             docker = { "dockerls" },
             yaml = { "yamlls" },
-            go = { "goimports", "gofumpt" }
+            go = { "goimports", "gofumpt" },
+            terraform = { "terraform" },
+            rust = { "rust_analyzer" }
         }
     },
 }

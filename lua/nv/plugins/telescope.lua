@@ -3,7 +3,11 @@ return {
     tag = "0.1.5",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        {
+            "nvim-telescope/telescope-live-grep-args.nvim",
+            version = "^1.0.0",
+        }
     },
     keys = {
         {
@@ -14,9 +18,16 @@ return {
             mode = "n"
         },
         {
+            "<leader>s",
+            function()
+                require("telescope.builtin").buffers()
+            end,
+            mode = "n"
+        },
+        {
             "<leader>fg",
             function()
-                require("telescope.builtin").live_grep()
+                require("telescope").extensions.live_grep_args.live_grep_args()
             end,
             mode = "n"
         },
@@ -44,7 +55,7 @@ return {
         {
             "<leader>tt",
             function()
-                require("telescope.builtin").diagnostics()
+                require("telescope.builtin").diagnostics(require('telescope.themes').get_ivy({ previewer = false }))
             end,
             mode = "n"
         }
@@ -61,5 +72,6 @@ return {
             }
         }
         require('telescope').load_extension('fzf')
+        require('telescope').load_extension('live_grep_args')
     end
 }
