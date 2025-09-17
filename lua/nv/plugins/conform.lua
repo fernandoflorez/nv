@@ -22,7 +22,8 @@ return {
             docker = { "dockerls" },
             yaml = { "yamlls" },
             go = { "goimports", "gofumpt" },
-            terraform = { "terraform" }
+            terraform = { "terraform" },
+            rust = { "rust_analyzer" }
         }
     },
 }

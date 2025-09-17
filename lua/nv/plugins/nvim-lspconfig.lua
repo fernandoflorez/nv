@@ -102,6 +102,7 @@ return {
                 "yamlls",
                 "graphql",
                 "gopls",
+                "rust_analyzer"
             },
         })
         require('mason-tool-installer').setup({
