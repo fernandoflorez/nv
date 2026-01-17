@@ -10,11 +10,13 @@ return {
                 require("luasnip.loaders.from_snipmate").lazy_load()
             end
         },
-        "onsails/lspkind.nvim",
-
     },
     version = '1.*',
     opts = {
+        appearance = {
+            use_nvim_cmp_as_default = true,
+            nerd_font_variant = 'mono'
+        },
         keymap = {
             preset = "none",
             ["<Tab>"] = {
@@ -57,20 +59,6 @@ return {
             documentation = { auto_show = true, auto_show_delay_ms = 0 },
             menu = {
                 auto_show = true,
-                draw = {
-                    components = {
-                        kind_icon = {
-                            text = function(ctx)
-                                return require("lspkind").symbolic(ctx.kind, {
-                                    mode = "symbol_text",
-                                    maxwidth = 50,
-                                    ellipsis_char = "...",
-                                    show_labelDetails = true
-                                })
-                            end,
-                        },
-                    },
-                },
             },
         },
         signature = { enabled = false },
