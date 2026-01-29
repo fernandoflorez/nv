@@ -27,17 +27,13 @@ return {
                 client.server_capabilities.hoverProvider = false
             end
         })
-        vim.lsp.config('basedpyright', {
+        vim.lsp.config('ty', {
             capabilities = capabilities,
             settings = {
-                basedpyright = {
-                    disableOrganizeImports = true,
-                    analysis = {
-                        ignore = { "*" },
-                        useLibraryCodeForTypes = true,
-                        typeCheckingMode = "standard",
-                        diagnosticMode = "openFilesOnly",
-                        autoImportCompletions = true,
+                ty = {
+                    diagnosticMode = "workspace",
+                    completions = {
+                        autoImport = true
                     }
                 },
             },
@@ -100,7 +96,7 @@ return {
                 "lua_ls",
                 "dockerls",
                 "ruff",
-                "basedpyright",
+                "ty",
                 "yamlls",
                 "graphql",
                 "gopls",
