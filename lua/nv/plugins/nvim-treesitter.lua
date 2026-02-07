@@ -11,6 +11,8 @@ return {
                 "dockerfile",
                 "go",
                 "json",
+                "markdown",
+                "markdown_inline",
                 "terraform",
                 "yaml",
             },
