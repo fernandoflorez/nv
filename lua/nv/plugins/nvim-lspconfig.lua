@@ -9,8 +9,6 @@ return {
     config = function()
         require("mason").setup({})
 
-        vim.lsp.set_log_level("error")
-
         local cmp_lsp = require("blink.cmp")
         local capabilities = vim.tbl_deep_extend(
             "force",
@@ -29,6 +27,7 @@ return {
         })
         vim.lsp.config('ty', {
             capabilities = capabilities,
+            root_markers = { 'uv.lock', '.git' },
             settings = {
                 ty = {
                     diagnosticMode = "workspace",
