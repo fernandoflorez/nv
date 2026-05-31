@@ -1,31 +1,36 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    config = function()
-        local configs = require("nvim-treesitter.configs")
-        configs.setup({
-            ensure_installed = {
-                "lua",
-                "python",
-                "dockerfile",
-                "go",
-                "json",
-                "markdown",
-                "markdown_inline",
-                "terraform",
-                "yaml",
-            },
-            sync_install = false,
-            auto_install = true,
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false
-            },
-            indent = {
-                enable = true,
-                -- disable = { "python" }
-            }
+    init = function()
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = function()
+                pcall(vim.treesitter.start)
+            end,
         })
-    end
+    end,
+    config = function()
+        local ensure_installed = {
+            "lua",
+            "python",
+            "dockerfile",
+            "go",
+            "json",
+            "markdown",
+            "markdown_inline",
+            "terraform",
+            "yaml",
+        }
+
+        local installed = require("nvim-treesitter.config").get_installed()
+        local to_install = vim.iter(ensure_installed)
+            :filter(function(parser)
+                return not vim.tbl_contains(installed, parser)
+            end)
+            :totable()
+        if #to_install > 0 then
+            require("nvim-treesitter").install(to_install)
+        end
+    end,
 }
