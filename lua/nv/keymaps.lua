@@ -6,13 +6,3 @@ vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "dd", '"_dd')
 vim.keymap.set("n", "p", '"+p')
 vim.keymap.set("n", "P", '"+P')
-
-local nvGroup = vim.api.nvim_create_augroup("nv", {})
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = nvGroup,
-    callback = function(event)
-        local opts = { buffer = event.buf, silent = true }
-
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    end
-})
