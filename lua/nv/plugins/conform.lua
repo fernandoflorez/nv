@@ -14,16 +14,15 @@ return {
     opts = {
         format_on_save = { timeout_ms = 500, lsp_fallback = true },
         formatters_by_ft = {
-            lua = { "lua_ls" },
+            lua = { "stylua" },
             python = { "ruff_format" },
             json = { "jq" },
             javascript = { "prettierd" },
             graphql = { "prettierd" },
-            docker = { "dockerls" },
-            yaml = { "yamlls" },
+            yaml = { "prettierd" },
             go = { "goimports", "gofumpt" },
             terraform = { "terraform" },
-            rust = { "rust_analyzer" }
+            rust = { "rustfmt" },
         }
     },
 }
