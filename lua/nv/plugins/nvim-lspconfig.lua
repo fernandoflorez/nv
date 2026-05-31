@@ -2,8 +2,8 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason.nvim",
+        "mason-org/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     config = function()
@@ -20,13 +20,11 @@ return {
             capabilities = capabilities
         })
         vim.lsp.config('ruff', {
-            capabilities = capabilities,
             on_attach = function(client, _)
                 client.server_capabilities.hoverProvider = false
             end
         })
         vim.lsp.config('ty', {
-            capabilities = capabilities,
             root_markers = { 'uv.lock', '.git' },
             settings = {
                 ty = {
@@ -38,7 +36,6 @@ return {
             },
         })
         vim.lsp.config('lua_ls', {
-            capabilities = capabilities,
             settings = {
                 Lua = {
                     diagnostics = {
@@ -52,10 +49,8 @@ return {
                     },
                 }
             }
-
         })
         vim.lsp.config('yamlls', {
-            capabilities = capabilities,
             settings = {
                 yaml = {
                     customTags = {
@@ -82,34 +77,37 @@ return {
             }
         })
         vim.lsp.config('gopls', {
-            capabilities = capabilities,
             settings = {
                 gopls = {
                     gofumpt = true
                 }
             }
+        })
 
-        })
+        local servers = {
+            "lua_ls",
+            "dockerls",
+            "ruff",
+            "ty",
+            "yamlls",
+            "graphql",
+            "gopls",
+            "rust_analyzer"
+        }
         require("mason-lspconfig").setup({
-            ensure_installed = {
-                "lua_ls",
-                "dockerls",
-                "ruff",
-                "ty",
-                "yamlls",
-                "graphql",
-                "gopls",
-                "rust_analyzer"
-            },
+            ensure_installed = servers,
         })
+        vim.lsp.enable(servers)
         require('mason-tool-installer').setup({
             ensure_installed = {
                 "goimports",
                 "gofumpt",
                 "prettierd",
                 "jq",
+                "stylua",
                 "terraform-ls",
-                "terraform"
+                "terraform",
+                "tree-sitter-cli"
             }
         })
     end
