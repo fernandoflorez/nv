@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.g.vim_json_syntax_conceal = 0
 vim.opt.belloff = "all"
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -11,10 +10,8 @@ vim.opt.autoindent = false
 vim.opt.smartindent = false
 vim.opt.shiftwidth = 4
 vim.opt.scrolloff = 8
--- vim.opt.backspace = indent,eol,start
 vim.opt.backup = false
 vim.opt.swapfile = false
--- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
@@ -26,7 +23,7 @@ vim.opt.wildmode = "list:longest,list:full"
 vim.opt.cursorline = true
 vim.opt.splitbelow = true
 vim.opt.mouse = ""
-vim.api.nvim_set_option("clipboard", "unnamed")
+vim.opt.clipboard = "unnamed"
 -- netrw
 vim.g.netrw_banner = false
 vim.g.netrw_liststyle = 3
@@ -37,7 +34,7 @@ vim.diagnostic.config({
         focusable = false,
         style = "minimal",
         border = "rounded",
-        source = "always",
+        source = true,
         header = "",
         prefix = ""
     }
